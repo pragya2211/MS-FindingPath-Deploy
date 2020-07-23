@@ -17,9 +17,11 @@
 <button onclick="BFSutil()">Start bfs</button>
 <button onclick="Clear()">Clear search</button>
 <button onclick="change_end()">Change End?</button>
+<button onclick="Clearwalls()">Clear Walls</button>
 <button onclick="change_start()">Change Start?</button>
-<button onclick="setdiagonal()">Allow diagonal search?</button>
 <button onclick="add_end()">Add another end point?</button>
+<button onclick="setdiagonal()">Allow diagonal search?</button>
+<input type="checkbox"id="mycheck">
 </div>
 <br><br><br><br>
 <style type="text/css">
@@ -48,6 +50,7 @@
   var allowdiagonal = false; 
   var create_end= false;
   var nodes = [];
+  var flag_endpoint =0;
   var update_start = false;
   var update_end = false;
   var count_ends = 2;
@@ -93,12 +96,13 @@
   }
   function click(clicked) 
   { 
-    if(create_end == true)
+    if(create_end == true && flag_endpoint!=1)
     {
       document.getElementById(clicked).style.background = 'blue';
       nodes.push(clicked.slice(4));
       add_end_matrix(clicked);
       create_end = false;
+      flag_endpoint=1;
     }
     else if(update_start == true)
     {
@@ -188,6 +192,27 @@ function add_end_matrix(clicked)
   matrix[r_start_new2][r_end_new2] = count_ends;
 
 }
+  
+ function Clearwalls()
+{
+  for(var i=0; i<rows; i++) 
+    {
+      for(var j=0; j<cols; j++)
+      {
+
+    var n = i.toString();
+    var a=j.toString();
+    var b=n+"a" +a;
+    if(matrix[i][j] == -1)
+    {
+        document.getElementById("CELL"+b).style.background = 'white';
+        matrix[i][j] =0;
+    }
+       
+       }
+    }
+
+}
 
 function setStart(i,j)
 {
@@ -241,13 +266,13 @@ function setdiagonal()
   if(allowdiagonal==false)
   {
       allowdiagonal=true;
-
+      document.getElementById("mycheck").checked = true;
   }
 
   else
   {
       allowdiagonal=false;
-
+      document.getElementById("mycheck").checked = false;
   }
 }
 function add_end()
