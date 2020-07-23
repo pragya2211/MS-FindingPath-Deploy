@@ -9,17 +9,33 @@
     Click on the buttons to get their IDs
   </p>
   <p id = matrix_print>
-    The matrix will get displayed here on click of nodes
+    </p>
 
 </head>
+<div class="button-group" align="center">
 <button onclick="BFSutil()">Start bfs</button>
 <button onclick="Clear()">Clear search</button>
-<button onclick="Clearwalls()">Clear Walls</button>
 <button onclick="change_end()">Change End?</button>
 <button onclick="change_start()">Change Start?</button>
 <button onclick="setdiagonal()">Allow diagonal search?</button>
-<input type="checkbox"id="mycheck">
 <button onclick="add_end()">Add another end point?</button>
+</div>
+<br><br><br><br>
+<style type="text/css">
+  .button-group button {
+  background-color: #4CAF50; 
+  border: 1px solid black; 
+  color: white; 
+  padding: 10px 24px; 
+  cursor: pointer; 
+  float: left; 
+  display: block;
+}
+
+.button-group button:hover {
+  background-color: #3e8e41;
+}
+</style>
 <!-- <button onclick="colour(40,40)">Change start node</button> -->
 <script type="text/javascript">
   var startnode;    //To store the startnode of graph globally
@@ -38,6 +54,7 @@
   docFrag = document.createDocumentFragment();
   var el_down = document.getElementById("printIDs");
   var mat_display = document.getElementById("matrix_print");
+  textbox = document.createElement();
 
   function makerows()
   {
@@ -223,13 +240,13 @@ function setdiagonal()
   if(allowdiagonal==false)
   {
       allowdiagonal=true;
-      document.getElementById("mycheck").checked = true;
+
   }
 
   else
   {
       allowdiagonal=false;
-      document.getElementById("mycheck").checked = false;
+
   }
 }
 function add_end()
@@ -450,26 +467,7 @@ function Clear()
     }
 
 }
-function Clearwalls()
-{
-  for(var i=0; i<rows; i++) 
-    {
-      for(var j=0; j<cols; j++)
-      {
 
-    var n = i.toString();
-    var a=j.toString();
-    var b=n+"a" +a;
-    if(matrix[i][j] == -1)
-    {
-        document.getElementById("CELL"+b).style.background = 'white';
-        matrix[i][j] =0;
-    }
-       
-       }
-    }
-
-}
 
 
 function makematrix()
