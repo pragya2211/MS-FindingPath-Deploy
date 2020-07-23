@@ -14,9 +14,11 @@
 </head>
 <button onclick="BFSutil()">Start bfs</button>
 <button onclick="Clear()">Clear search</button>
+<button onclick="Clearwalls()">Clear Walls</button>
 <button onclick="change_end()">Change End?</button>
 <button onclick="change_start()">Change Start?</button>
 <button onclick="setdiagonal()">Allow diagonal search?</button>
+<input type="checkbox"id="mycheck">
 <button onclick="add_end()">Add another end point?</button>
 <!-- <button onclick="colour(40,40)">Change start node</button> -->
 <script type="text/javascript">
@@ -221,13 +223,13 @@ function setdiagonal()
   if(allowdiagonal==false)
   {
       allowdiagonal=true;
-
+      document.getElementById("mycheck").checked = true;
   }
 
   else
   {
       allowdiagonal=false;
-
+      document.getElementById("mycheck").checked = false;
   }
 }
 function add_end()
@@ -448,7 +450,26 @@ function Clear()
     }
 
 }
+function Clearwalls()
+{
+  for(var i=0; i<rows; i++) 
+    {
+      for(var j=0; j<cols; j++)
+      {
 
+    var n = i.toString();
+    var a=j.toString();
+    var b=n+"a" +a;
+    if(matrix[i][j] == -1)
+    {
+        document.getElementById("CELL"+b).style.background = 'white';
+        matrix[i][j] =0;
+    }
+       
+       }
+    }
+
+}
 
 
 function makematrix()
